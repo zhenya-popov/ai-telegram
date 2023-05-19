@@ -1,0 +1,20 @@
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Ignore lock file
+package-lock.json
+
+# Editor folders
+.idea
+.vscode
+
+.env
