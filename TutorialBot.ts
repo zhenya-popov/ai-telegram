@@ -39,57 +39,6 @@ bot.command("ai", async (ctx) => {
       }
  })
 
- bot.command("currencies", (ctx) => {
-    const options = {
-        headers: { 'apikey': "Ryos1vyserhf4nKUgEHIAqAcN2Fzl3LM" }
-    };
-    let symbols = null;
-
-    ctx.reply('Please wait for answer');
-
-    https.get('https://api.apilayer.com/fixer/symbols', options, (resp) => {
-        let data = '';
-        resp.on('data', (chunk) => {
-            data += chunk;
-          });
-        resp.on('end', () => {
-            symbols = Object.keys(JSON.parse(data).symbols);
-            ctx.reply(symbols.join(','));
-            console.log(symbols);
-          });
-    })
- })
-
- bot.command('convert', (ctx) => {
-    const amount = ctx.match.split(' ')[0];
-    const from = ctx.match.split(' ')[1];
-    const to = ctx.match.split(' ')[2];
-    const parameters = {
-        amount,
-        from,
-        to
-    }
-    const queryParams = querystring.stringify(parameters);
-
-    const options = {
-        headers: { 'apikey': "Ryos1vyserhf4nKUgEHIAqAcN2Fzl3LM" }
-    };
-
-    ctx.reply('Please wait for the answer');
-
-    https.get('https://api.apilayer.com/fixer/convert?' + queryParams, options, (resp) => {
-        let data = '';
-        resp.on('data', (chunk) => {
-            data += chunk;
-          });
-        resp.on('end', () => {
-            const result = JSON.parse(data).result;
-            console.log(`${amount} ${from} equals to ${result} ${to}`);
-            ctx.reply(`${amount} ${from} equals to ${result} ${to}`);
-          });
-    })
- })
-
 //This function would be added to the dispatcher as a handler for messages coming from the Bot API
 bot.on("message", async (ctx) => {
   //Print to console
